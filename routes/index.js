@@ -1,14 +1,15 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const path = require("path");
 const nodemailer = require("nodemailer");
+const cors = require("cors");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.sendFile(path.join(__dirname, "../public/Frontend/index.html"));
 });
 
-router.post("/contact-me", function (req, res, next) {
+router.post("/contact-me", cors(), function (req, res, next) {
   const { name, phoneNumber, email, message, subject } = req.body;
 
   const transporter = nodemailer.createTransport({
