@@ -3,6 +3,18 @@ var router = express.Router();
 const path = require("path");
 const nodemailer = require("nodemailer");
 
+app.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://longe-temitope-resume.netlify.app/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.sendFile(path.join(__dirname, "../public/Frontend/index.html"));
